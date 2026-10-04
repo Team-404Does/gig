@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071421" />
+  <title>AeroNexus | Fleet Intelligence</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><div><b>AERONEXUS</b><small>FLEET INTELLIGENCE</small></div></div>
+      <nav><button class="nav active" data-view="command">◈ <span>Fleet Command</span></button><button class="nav" data-view="health">⌁ <span>Asset Health</span></button><button class="nav" data-view="planner">◷ <span>Maintenance Planner</span></button><button class="nav" data-view="audit">▣ <span>Decision Audit</span></button></nav>
+      <div class="side-footer"><span class="live-dot"></span> Synthetic demo environment<br><small>Human approval required</small></div>
+    </aside>
+    <main>
+      <header><div><p class="eyebrow">SIH26249 · PREDICTIVE MAINTENANCE</p><h1 id="page-title">Fleet Command</h1></div><div class="header-meta"><span class="pill"><i></i> SYSTEM ONLINE</span><button class="ghost" id="refresh">↻ Refresh</button></div></header>
+      <section id="command" class="view active">
+        <div class="notice"><strong>Simulation mode.</strong> Metrics and telemetry are synthetic/proxy data for prototype evaluation, not operational aircraft data.</div>
+        <div class="kpis" id="kpis"></div>
+        <div class="grid two"><article class="panel"><div class="panel-head"><div><p class="eyebrow">READINESS OUTLOOK</p><h2>Fleet availability</h2></div><span class="muted">7-day projected</span></div><div class="chart-wrap"><svg id="availability-chart" viewBox="0 0 680 220" preserveAspectRatio="none"></svg></div><div class="legend"><span><i class="line base"></i> Current plan</span><span><i class="line opt"></i> AI plan</span><strong id="chart-gain">+7 pts expected</strong></div></article><article class="panel priority"><div class="panel-head"><div><p class="eyebrow">DECISION QUEUE</p><h2>Priority actions</h2></div><button class="text-button" data-goto="planner">Open planner →</button></div><div id="priority-list"></div></article></div>
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">COMPUTATIONAL MAINTENANCE TWIN</p><h2>Fleet health map</h2></div><span class="muted">Latest telemetry: <b id="freshness">--</b></span></div><div class="asset-grid" id="asset-grid"></div></article>
+      </section>
+      <section id="health" class="view"><div class="section-head"><div><p class="eyebrow">ASSET HEALTH EXPLORER</p><h2>Evidence before action</h2></div><select id="asset-select" aria-label="Select aircraft"></select></div><div id="health-content"></div></section>
+      <section id="planner" class="view"><div class="section-head"><div><p class="eyebrow">CONSTRAINT-AWARE OPTIMIZATION</p><h2>Maintenance Planner</h2><p class="muted">Rank maintenance by risk, remaining useful life, mission criticality, spares, and crew capacity.</p></div><button class="primary" id="approve-button" disabled>Approve selected plan</button></div><div class="planner-controls"><label>Crew slots <div class="stepper"><button id="crew-down">−</button><b id="crew-value">3</b><button id="crew-up">+</button></div></label><label class="toggle-row"><input type="checkbox" id="spare-toggle" /><span class="toggle"></span><span><b>Critical spare disruption</b><small>Hydraulic pump spare delayed by 18h</small></span></label><button class="primary" id="run-plan">Generate AI plan</button></div><div id="plan-content" class="empty-state">Choose your constraints, then generate a plan.</div></section>
+      <section id="audit" class="view"><div class="section-head"><div><p class="eyebrow">GOVERNANCE AND TRACEABILITY</p><h2>Decision audit</h2><p class="muted">Every prediction, planning run, and approval is recorded.</p></div><button class="ghost" id="audit-refresh">↻ Refresh log</button></div><div class="audit-list" id="audit-list"></div></section>
+    </main>
+  </div>
+  <dialog id="approval-dialog"><form method="dialog"><button class="dialog-close" value="cancel">×</button><p class="eyebrow">HUMAN-IN-THE-LOOP</p><h2>Approve AI maintenance plan</h2><p class="muted">Your decision will be written to the immutable demo audit trail.</p><label>Decision<select id="decision"><option value="approved">Approve plan</option><option value="modified">Approve with modifications</option><option value="deferred">Defer plan</option><option value="rejected">Reject plan</option></select></label><label>Planner note<textarea id="approval-note" required minlength="3" placeholder="Reason for this operational decision"></textarea></label><button class="primary full" id="confirm-approval" value="default">Record decision</button></form></dialog>
+  <div id="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
